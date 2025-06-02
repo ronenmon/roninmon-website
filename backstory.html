@@ -11,7 +11,8 @@
       height: 100%;
       background: black;
       overflow: hidden;
-      cursor: url('cursor.png'), auto; 
+      cursor: "cursor.png", auto; 
+      <img src="./2-1.png" class="cursor" />
     }
 
     .slideshow {
@@ -41,16 +42,17 @@
   </style>
 </head>
 <body onclick="nextSlide()">
-  
- <audio id="bgm" preload="auto" loop>
-    <source src="./bgm.mp3" type="audio/mpeg">
+  <!-- 🎵 Background Music -->
+  <audio id="bgm" autoplay loop>
+    <source src="bgm.mp3" type="audio/mpeg" />
   </audio>
 
-  <audio id="click-sfx" preload="auto">
-    <source src="./click.mp3" type="audio/mpeg">
+  <!-- 🔊 Click Sound Effect -->
+  <audio id="click-sfx">
+    <source src="click.mp3" type="audio/mpeg" />
   </audio>
 
-  
+  <!-- 🖼 Slideshow -->
   <div class="slideshow">
     <img src="./1-1.png" class="slide active" />
     <img src="./2-1.png" class="slide" />
@@ -62,16 +64,17 @@
   <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    const bgm = document.getElementById('bgm');
     const clickSound = document.getElementById('click-sfx');
+    const bgm = document.getElementById('bgm');
+    let bgmStarted = true;
 
     function nextSlide() {
-     if (!bgmStarted) {
-        bgm.play().catch(err => console.warn("Autoplay blocked:", err));
-        bgmStarted = true;
-       
       clickSound.currentTime = 0;
       clickSound.play();
+      if (!bgmStarted) {
+        bgm.play().catch(err => console.warn("Autoplay blocked:", err));
+        bgmStarted = true;
+      }
 
       slides[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % slides.length;
