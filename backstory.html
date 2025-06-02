@@ -42,13 +42,12 @@
 </head>
 <body onclick="nextSlide()">
   
-  <audio id="bgm" autoplay loop>
-    <source src="./bgm.mp3" type="audio/mpeg" />
+ <audio id="bgm" preload="auto" loop>
+    <source src="./bgm.mp3" type="audio/mpeg">
   </audio>
 
-  
-  <audio id="click-sfx">
-    <source src="./click.mp3" type="audio/mpeg" />
+  <audio id="click-sfx" preload="auto">
+    <source src="./click.mp3" type="audio/mpeg">
   </audio>
 
   
@@ -63,9 +62,14 @@
   <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
+    const bgm = document.getElementById('bgm');
     const clickSound = document.getElementById('click-sfx');
 
     function nextSlide() {
+     if (!bgmStarted) {
+        bgm.play().catch(err => console.warn("Autoplay blocked:", err));
+        bgmStarted = true;
+       
       clickSound.currentTime = 0;
       clickSound.play();
 
