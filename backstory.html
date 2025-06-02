@@ -11,7 +11,7 @@
       height: 100%;
       background: black;
       overflow: hidden;
-      cursor: pointer;
+      cursor: url('cursor.png'), auto; 
     }
 
     .slideshow {
@@ -34,22 +34,41 @@
     .slide.active {
       opacity: 1;
     }
+
+    audio {
+      display: none;
+    }
   </style>
 </head>
-<body>
-  <div class="slideshow" onclick="nextSlide()">
-    <img src="./1-1.png" class="slide active" />
-    <img src="./2-1.png" class="slide" />
-    <img src="./3-1.png" class="slide" />
-    <img src="./4-1.png" class="slide" />
-    <img src="./5-1.png" class="slide" />
+<body onclick="nextSlide()">
+  
+  <audio id="bgm" autoplay loop>
+    <source src="./bgm.mp3" type="audio/mpeg" />
+  </audio>
+
+  
+  <audio id="click-sfx">
+    <source src="./click.mp3" type="audio/mpeg" />
+  </audio>
+
+  
+  <div class="slideshow">
+    <img src="./1-1.jpg" class="slide active" />
+    <img src="./2-1.jpg" class="slide" />
+    <img src="./3-1.jpg" class="slide" />
+    <img src="./4-1.jpg" class="slide" />
+    <img src="./5-1.jpg" class="slide" />
   </div>
 
   <script>
     let currentIndex = 0;
     const slides = document.querySelectorAll('.slide');
+    const clickSound = document.getElementById('click-sfx');
 
     function nextSlide() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+
       slides[currentIndex].classList.remove('active');
       currentIndex = (currentIndex + 1) % slides.length;
       slides[currentIndex].classList.add('active');
