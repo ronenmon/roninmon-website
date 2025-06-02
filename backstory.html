@@ -67,19 +67,27 @@
     const clickSound = document.getElementById('click-sfx');
     const bgm = document.getElementById('bgm');
     let bgmStarted = false;
+    bgm.volume = 0.5;
 
-    function nextSlide() {
-      clickSound.currentTime = 0;
-      clickSound.play();
-      if (!bgmStarted) {
-        bgm.play().catch(err => console.warn("Autoplay blocked:", err));
-        bgmStarted = true;
-      }
+function nextSlide() {
+  clickSound.currentTime = 0;
+  clickSound.play().catch(() => {});
 
-      slides[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add('active');
-    }
+  if (!bgmStarted) {
+    console.log("Attempting to play BGM...");
+    bgm.play().then(() => {
+      bgmStarted = true;
+    }).catch(err => {
+      console.warn("BGM autoplay blocked:", err);
+    });
+  }
+
+  slides[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex + 1) % slides.length;
+  slides[currentIndex].classList.add('active');
+}
+
+    
   </script>
 </body>
 </html>
