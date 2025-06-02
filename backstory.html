@@ -11,8 +11,8 @@
       height: 100%;
       background: black;
       overflow: hidden;
-      cursor: "cursor.png", auto; 
-      <img src="./2-1.png" class="cursor" />
+      cursor: url('cursor.png'), auto;
+      
     }
 
     .slideshow {
@@ -43,7 +43,7 @@
 </head>
 <body onclick="nextSlide()">
   <!-- 🎵 Background Music -->
-  <audio id="bgm" autoplay loop>
+  <audio id="bgm" loop>
     <source src="bgm.mp3" type="audio/mpeg" />
   </audio>
 
