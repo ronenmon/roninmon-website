@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roninmon WL Checker</title>
+  <style>
+    body {
+      font-family: 'Poppins';
+       color: #FFFFFF;
+      text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+      background: url('./background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: linear-gradient(360deg, #661A38 0%, #AE2C5F 84%, #CC3470 100%);
+      border: 2px solid #D3BF2C;
+      padding: 2rem;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    input {
+      width: 75%;
+      padding: 1rem;
+      font-size: 1rem;
+      margin: 1rem 0;
+      border: 3px solid #000000;
+      border-radius: 20px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      background: #0B6DA3;
+      font-family: 'Poppins';
+      text-shadow: -2px 0 black, 0 1px black, 2px 0 black, 0 -2px black;
+      color: white;
+      border: 3px solid #000000;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+     
+    }
+    #result {
+      justify-content: center;
+      font-family: 'Irish Grover';
+      font-style: normal;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Roninmon WL Checker</h2>
+    <input id="address" placeholder="Enter your Ronin wallet" />
+    <button onclick="checkWL()">CHECK</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+                                                                                              // WL ADDRESS LIST
+    const whitelist = {
+      "renintashafa": { type: "GTD", mints: 5 },
+      "renintashafa2": { type: "FCFS", mints: 2 },
+      "0x5f3c995dcac6d736cd18d19c51770357cb5ec8a9": { type: "GTD", mints: 5 },
+      "0xffaae5d975339442844beee3aff2e0084acb5444": { type: "GTD", mints: 5 },
+      "0x53be25808c563257ed3e9e6b3e8f6768456de653": { type: "GTD", mints: 5 },
+      "0x0d6dfba00c3f9864df9f77b70b7da7bbb456bc8f": { type: "GTD", mints: 5 },
+      "0x636a9618f372885d3ddc2737f1226627f55ad4e2": { type: "GTD", mints: 5 },
+      "0x3b366278e87dde8a207304d15b46f3cfd9871eb5": { type: "GTD", mints: 5 },
+      "0x4216ccbc28c3e7b1b366bb6fedd7af27a39b202f": { type: "GTD", mints: 5 },
+      "0xe99fea14cfa2737d1b5796210194f313079d019d": { type: "GTD", mints: 5 },
+      "0x1c6c8e3d6a2e0b1f3d4bb83bb16e37b8dafb34b9": { type: "GTD", mints: 5 },
+      "0x0e6bf8b82938de2aa575bb448f6d1b5cfe15bf41": { type: "GTD", mints: 5 },
+      "0xe31efb5ace75cb7fd81cf8fd15a74114602a314c": { type: "GTD", mints: 5 },
+      "0x1661fab800c642301a86353d38c24015fe381c2d": { type: "GTD", mints: 5 },
+      "0xdde66b6bfd64a8ea2c9bf9e792c909c5100c6013": { type: "GTD", mints: 5 },
+      "0x7a494b87d4987b61ab8cfff1c478705e118bd076": { type: "GTD", mints: 5 },
+      "0xf1d42dba62c6ab93bdddd91ef0e1e26e768800c0": { type: "GTD", mints: 5 },
+      "0x8765bbbbc020a058030c041cb4cece169e41e6fa": { type: "GTD", mints: 5 },
+      "0x2d8d8448dd46a0c6dcad47e24053c7091f0e47a4": { type: "GTD", mints: 5 },
+      "0x07358719805a93f1345622bc3e8bc0bc169fdb38": { type: "GTD", mints: 5 },
+      "0x97b53b7941f4ea0a958c8772b9f4158920816126": { type: "GTD", mints: 5 },
+      "0xe3cf699bb200b8f0d105e9d3271d5dcbd6cdd06b": { type: "GTD", mints: 5 },
+      "0xf44b2825d359f53d591c47ff87a0d821985050e8": { type: "GTD", mints: 5 },
+      "0xbd81c6d15448acf5d8d788873b3e5ab5c20fc938": { type: "GTD", mints: 5 },
+      "0x748d739fee463d35c4eada14653d60eb1381879f": { type: "GTD", mints: 5 },
+      "0x747ad58aff619096812912324c24ae0de2f66aae": { type: "GTD", mints: 5 },
+      "0x07fccf4817d71061df1dd9bddc5bce0c82d41090": { type: "GTD", mints: 5 },
+      "0x30a2122fe9d40647116737169e7239502ff58be0": { type: "GTD", mints: 5 },
+      "0x87261dbe7115d33f96f97db7e83557e01cdb5a40": { type: "GTD", mints: 5 },
+      "0x0e069dd7405d86d4e1418a9723b88d27d81069cf": { type: "GTD", mints: 5 },
+      "0xb0ecea444bf296c0e28813bbc0f0a359c1280fbb": { type: "GTD", mints: 5 },
+      "0xf387b5d4c7b3a4b8654ad12ca732a8d2fc8b57e3": { type: "GTD", mints: 5 },
+      "0x85baec4c1942bd9064894736837a629e8d24ea6a": { type: "GTD", mints: 5 },
+      "0xd321850d628ae5ed9025ad79bffd73fbf8daa9f1": { type: "GTD", mints: 5 },
+      "0xb46334c3144436c45d39bbc351eec912738aefc2": { type: "GTD", mints: 5 },
+      "0xeba46ae71735bb5454a265050e8fbd5d0fac86cd": { type: "GTD", mints: 5 },
+      "0xb46334c3144436c45d39bbc351eec912738aefc2": { type: "GTD", mints: 5 },
+      "0x2bc6a60a927cb7cc6fd09fb57a36b99be1eb08f3": { type: "GTD", mints: 5 },
+      "0x2b1196a27c265d0d6fbb1b009ca9892b363aa5f4": { type: "GTD", mints: 5 },
+      "0xafbbbcc124563909ebeb6e8152b3c28ec1780d8d": { type: "GTD", mints: 5 },
+      "0x3bbaa45b58ef50ef93849e8dc1b5a56d4acbe3d1": { type: "GTD", mints: 5 },
+      "0xa28ba0d8fefed47fc1accef68faeba3804309480": { type: "GTD", mints: 5 },
+      "0x481ca05d752faa0c0612e6b1dbf5ea286b87b212": { type: "GTD", mints: 5 },
+      "0x590bfd1f4fa2ea780a4a0b31537c08eae9b49b90": { type: "GTD", mints: 5 },
+      "0xafbbbcc124563909ebeb6e8152b3c28ec1780d8d": { type: "GTD", mints: 5 },
+      "0xad679f8f1cd51fd998fec9b03decce6b81708ac4": { type: "GTD", mints: 5 },
+      "0x74aca1b972f6307f964780ca534613573c6f5e0f": { type: "GTD", mints: 5 },
+      "0xb46334c3144436c45d39bbc351eec912738aefc2": { type: "GTD", mints: 5 },
+      "0xd9494367e04462311fbfb847774445d990ca4aae": { type: "GTD", mints: 5 },
+      "0xf04c3bc3cf9874094b5f77d6bdb3cdd9a4340cbd": { type: "GTD", mints: 5 },
+      "0xdf5ee47c4139e98547bdeeee2f7ba7536583f410": { type: "GTD", mints: 5 },
+      "0xbeaaa32c1d66d9ea9ef0755e1442b8b057197b67": { type: "GTD", mints: 5 },
+      "0x98b5d0d707c057f4d885be0de16c4f41e75c68aa": { type: "GTD", mints: 5 },
+
+
+
+
+
+     
+                                                                                              // LAST UPDATE
+                                                                                              // WL ADDRESS LIST
+    };
+
+    function checkWL() {
+      const input = document.getElementById("address").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+      const wlData = whitelist[input];
+
+      if (wlData) {
+        result.innerText = `✅ You're whitelisted (${wlData.type}) with ${wlData.mints} mint(s).`;
+      } else {
+        result.innerText = "❌ Not whitelisted.";
+      }
+    }
+  </script>
+</body>
+</html>
