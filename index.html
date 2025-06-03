@@ -2,27 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roninmon</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-       color: #FFFFFF;
-      background: url('./home.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: 100vh;
     }
-  
+
+    .container {
+      max-width: 960px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero {
+      margin-bottom: 3rem;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #bbb;
+    }
+
+    .feature {
+      margin-bottom: 2.5rem;
+    }
+
+    .feature h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #f0c000;
+    }
+
+    .feature p {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.8rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="hero">
+      <img src="./roninmon-logo.png" alt="Roninmon Logo" class="logo" />
+      <h1>Welcome to Roninmon</h1>
+      <p>A new breed of monster adventure on the Ronin blockchain</p>
+    </div>
 
-  <script>
-  
+    <div class="feature">
+      <h2>🔋 Energy-Based Battles</h2>
+      <p>Fight in battles by spending energies called Essentia, Gather eggs.</p>
+    </div>
 
-  </script>
+    <div class="feature">
+      <h2>🛒 Marketplace & Token Economy</h2>
+      <p>Trade Eggs and Potions with other seekers.</p>
+    </div>
+
+    <div class="feature">
+      <h2>🐣 Eggs</h2>
+      <p>Incubate Eggs to open what lies inside.</p>
+    </div>
+
+    <footer>
+      © 2025 Roninmon. All rights reserved.
+    </footer>
+  </div>
 </body>
 </html>
