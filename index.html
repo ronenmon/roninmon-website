@@ -12,35 +12,46 @@
     }
 
     html, body {
-      scroll-behavior: smooth;
       height: 100%;
-      overflow: auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
+      perspective: 1px;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
-    section {
+    .parallax-section {
+      position: relative;
+      height: 100vh;
+      transform-style: preserve-3d;
+      overflow: hidden;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      z-index: -1;
+      transform: translateZ(-1px) scale(2);
+    }
+
+    .content {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
       padding: 2rem;
       text-align: center;
-      background-size: cover;
-      background-position: center;
-      transition: background 1s ease-in-out, opacity 1s ease-in-out;
-    }
-
-    .container {
-      scroll-snap-type: y mandatory;
-      height: 100vh;
-      overflow-y: scroll;
     }
 
     h1, h2 {
@@ -53,62 +64,57 @@
       color: #ddd;
     }
 
-    footer {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 2rem;
-    }
-
     .logo {
       width: 160px;
       margin-bottom: 1rem;
     }
 
-    /* Optional subtle overlay for text visibility */
-    section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+    footer {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 2rem;
     }
-
-    section > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-1 { background-image: url('./bg-hero.jpg'); }
-    .section-2 { background-image: url('./bg-energy.jpg'); }
-    .section-3 { background-image: url('./bg-market.jpg'); }
-    .section-4 { background-image: url('./bg-eggs.jpg'); }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <section class="section-1">
+  <!-- Section 1: Hero -->
+  <section class="parallax-section">
+    <img src="./bg-hero.jpg" alt="Hero Background" class="parallax-bg" />
+    <div class="content">
       <img src="./roninmon-logo.png" alt="Roninmon Logo" class="logo" />
       <h1>Welcome to Roninmon</h1>
       <p>Battle • Collect • Hatch • Endless Eggs</p>
-    </section>
+    </div>
+  </section>
 
-    <section class="section-2">
+  <!-- Section 2: Energy -->
+  <section class="parallax-section">
+    <img src="./bg-energy.jpg" alt="Energy Background" class="parallax-bg" />
+    <div class="content">
       <h2>🔋 Energy-Based Battles</h2>
       <p>Fight battles by spending Essentia, a powerful energy resource. Every battle brings a new chance to earn Eggs.</p>
-    </section>
+    </div>
+  </section>
 
-    <section class="section-3">
+  <!-- Section 3: Marketplace -->
+  <section class="parallax-section">
+    <img src="./bg-market.jpg" alt="Market Background" class="parallax-bg" />
+    <div class="content">
       <h2>🛒 Marketplace & Token Economy</h2>
       <p>Trade Eggs, Potions, and rare loot with other seekers in the decentralized marketplace.</p>
-    </section>
+    </div>
+  </section>
 
-    <section class="section-4">
+  <!-- Section 4: Eggs -->
+  <section class="parallax-section">
+    <img src="./bg-eggs.jpg" alt="Eggs Background" class="parallax-bg" />
+    <div class="content">
       <h2>🐣 Eggs & Hatching</h2>
       <p>Find dungeon-exclusive eggs, incubate them, and reveal what lies within. The future of your Roninmon awaits.</p>
       
-    </section>
+    </div>
+  </section>
 <footer>© 2025 Roninmon. All rights reserved.</footer>
-  </div>
 </body>
 </html>
