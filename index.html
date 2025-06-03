@@ -13,11 +13,9 @@
 
     html, body {
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
       height: 100%;
-      overflow: auto;
-    }
-
-    body {
+      overflow-y: auto;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fff;
     }
@@ -35,12 +33,7 @@
       background-size: cover;
       background-position: center;
       transition: background 1s ease-in-out, opacity 1s ease-in-out;
-    }
-
-    .container {
-      scroll-snap-type: y mandatory;
-      height: 100vh;
-      overflow-y: scroll;
+      position: relative;
     }
 
     h1, h2 {
@@ -56,7 +49,9 @@
     footer {
       font-size: 0.8rem;
       color: #aaa;
-      margin-top: 2rem;
+      padding: 2rem;
+      text-align: center;
+      background: #000;
     }
 
     .logo {
@@ -64,7 +59,7 @@
       margin-bottom: 1rem;
     }
 
-    /* Optional subtle overlay for text visibility */
+    /* Optional overlay for text readability */
     section::before {
       content: "";
       position: absolute;
@@ -85,31 +80,29 @@
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <section class="section-1">
-      <img src="./roninmon-logo.png" alt="Roninmon Logo" class="logo" />
-      <h1>Welcome to Roninmon</h1>
-      <p>Battle • Collect • Hatch • Endless Eggs</p>
-    </section>
+  <section class="section-1">
+    <img src="./roninmon-logo.png" alt="Roninmon Logo" class="logo" />
+    <h1>Welcome to Roninmon</h1>
+    <p>Battle • Collect • Hatch • Endless Eggs</p>
+  </section>
 
-    <section class="section-2">
-      <h2>🔋 Energy-Based Battles</h2>
-      <p>Fight battles by spending Essentia, a powerful energy resource.</p>
-    </section>
+  <section class="section-2">
+    <h2>🔋 Energy-Based Battles</h2>
+    <p>Fight battles by spending Essentia, a powerful energy resource.</p>
+  </section>
 
-    <section class="section-3">
-      <h2>🛒 Marketplace & Token Economy</h2>
-      <p>Trade Eggs, Potions, and rare loot with other seekers in the decentralized marketplace.</p>
-    </section>
+  <section class="section-3">
+    <h2>🛒 Marketplace & Token Economy</h2>
+    <p>Trade Eggs, Potions, and rare loot with other seekers in the decentralized marketplace.</p>
+  </section>
 
-    <section class="section-4">
-      <h2>🐣 Eggs & Hatching</h2>
-      <p>Gather eggs, incubate them, and reveal what lies within. The future of your Roninmon awaits.</p>
-      
-    </section>
+  <section class="section-4">
+    <h2>🐣 Eggs & Hatching</h2>
+    <p>Gather eggs, incubate them, and reveal what lies within. The future of your Roninmon awaits.</p>
+  </section>
 
-  </div>
-</body>
   <footer>© 2025 Roninmon. All rights reserved.</footer>
+
+</body>
 </html>
