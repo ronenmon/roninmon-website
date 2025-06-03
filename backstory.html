@@ -38,15 +38,20 @@
 
 .slide img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 100%;
   height: auto;
 }
 
 .text-overlay {
-  animation: wipeIn 1.5s ease forwards;
-  animation-delay: 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  height: auto;
   opacity: 0;
 }
 
@@ -121,7 +126,6 @@ function nextSlide() {
   clickSound.play().catch(() => {});
 
   if (!bgmStarted) {
-    console.log("Attempting to play BGM...");
     bgm.play().then(() => {
       bgmStarted = true;
     }).catch(err => {
@@ -129,9 +133,26 @@ function nextSlide() {
     });
   }
 
+  // Remove active class
   slides[currentIndex].classList.remove('active');
+
+  // Reset animation on current text-overlay
+  const textOverlays = slides[currentIndex].querySelectorAll('.text-overlay');
+  textOverlays.forEach(el => {
+    el.style.animation = 'none';
+    el.offsetHeight; // trigger reflow
+    el.style.animation = '';
+  });
+
+  // Move to next
   currentIndex = (currentIndex + 1) % slides.length;
   slides[currentIndex].classList.add('active');
+
+  // Reapply wipe animation to the new text-overlay
+  const newTextOverlays = slides[currentIndex].querySelectorAll('.text-overlay');
+  newTextOverlays.forEach(el => {
+    el.style.animation = 'wipeIn 1.5s ease forwards';
+  });
 }
 
     
