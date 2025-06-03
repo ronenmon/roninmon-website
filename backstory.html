@@ -122,6 +122,15 @@
     const bgm = document.getElementById('bgm');
     bgm.volume = 0.5;
     let bgmStarted = false;
+    let cursorIndex = 0;
+    const cursorList = [
+      'cursor1.png',
+      'cursor2.png',
+      'cursor3.png',
+      'cursor4.png',
+      'cursor5.png',
+      'cursor6.png'
+    ];
     
     
 
@@ -151,6 +160,10 @@ function nextSlide() {
   // Move to next
   currentIndex = (currentIndex + 1) % slides.length;
   slides[currentIndex].classList.add('active');
+
+   cursorIndex = (cursorIndex + 1) % cursorList.length;
+  document.body.style.cursor = `url('${cursorList[cursorIndex]}'), auto`;
+}
 
   // Reapply wipe animation to the new text-overlay
   const newTextOverlays = slides[currentIndex].querySelectorAll('.text-overlay');
